@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+//Override bootstrap variables 
+$body-bg: white;
+$body-color: #221E22;
+$font-family-sans-serif: 'Poppins', sans-serif;
+$font-size-base: 2.25rem;
+$h1-font-size: $font-size-base;
+$border-color: #4e90f1;
+//Project variables
+$block-color: white;
+
+
+@import "header";
+@import "registration";
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+html, body, #app, #app>div {
+    height: 100%
+}
+
+.content-block{
+    background-color: $block-color;
+}
+
+
