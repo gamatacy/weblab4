@@ -1,0 +1,32 @@
+.task {
+  font-size: 0.75rem;
+}
+
+.task h1 {
+  font-size: 1.5rem;
+}
+
+.task h2 {
+  font-size: 1rem;
+}
+
+.task h3 {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 891px) {
+  .task {
+    font-size: 1.5rem;
+  }
+  .task h1 {
+    font-size: 3rem;
+  }
+  .task h2 {
+    font-size: 2.25rem;
+  }
+  .task h3 {
+    font-size: 1.75rem;
+  }
+}
+
+/*# sourceMappingURL=task.css.map */

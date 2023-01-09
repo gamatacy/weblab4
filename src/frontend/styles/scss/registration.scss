@@ -1,5 +1,5 @@
 .registration-container{
-    height: 600px;
+    min-height: 600px;
     max-width: 1000px;
     margin-top: 60px;
     border-radius: 45px;
@@ -21,6 +21,7 @@
     border-radius: 45px;
     padding: 15px;
 }
+
 
 .submit-btn:hover{
     background: rgb(61,109,179);
