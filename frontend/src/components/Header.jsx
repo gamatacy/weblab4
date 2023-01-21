@@ -1,9 +1,13 @@
-import React from 'react';
+import React from 'react'
 import "../styles/index.css"
 import icon from "../img/github-mark.svg"
-const Header = () => {
+import logout from "../img/logout_FILL0_wght400_GRAD0_opsz48.svg"
+import AuthService from "../services/AuthService";
+
+const Header = ({isAuth, setIsAuth,...props}) => {
+
     return (
-        <div className="content-block border border-2" style={{height:100}}>
+        <div className="content-block border-bottom border-2" style={{height: 100}}>
             <div className="header-container mx-auto my-0">
                 <div className="row justify-content-center  d-md-flex w-100 h-100">
                     <div className="col-4 p-0 d-flex text-center">
@@ -19,7 +23,16 @@ const Header = () => {
                 </div>
             </div>
             <div className="position-absolute top-0 mt-md-3 mx-md-3 ">
-                <a href="https://github.com/gamatacy/weblab4"><img src={icon} height="32" width="32"/></a>
+                {
+                    isAuth
+                        ?
+                        <img src={logout} width="32" height="32" onClick={() =>{
+                            AuthService.logout(setIsAuth)
+                        }
+                        }/>
+                        :
+                        <a href="https://github.com/gamatacy/weblab4"><img src={icon} height="32" width="32"/></a>
+                }
             </div>
         </div>
     );

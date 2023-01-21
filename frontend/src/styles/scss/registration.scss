@@ -5,6 +5,10 @@
     border-radius: 45px;
 }
 
+.registration-container a{
+    color: #6366F1!important;
+}
+
 .error-message{
     width: 400px;
     position: absolute;
@@ -24,8 +28,8 @@
 
 
 .submit-btn:hover{
-    background: rgb(61,109,179);
-    background: linear-gradient(90deg, rgba(61,109,179,1) 0%, rgba(64,118,198,1) 37%, rgba(114,169,250,1) 100%);
+    background: rgb(109,112,241);
+    background: linear-gradient(270deg, rgba(109,112,241,1) 0%, rgba(68,71,191,1) 100%);
     color: white;
     border-color: white;
     transition: 0.3s;

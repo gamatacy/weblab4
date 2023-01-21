@@ -3,6 +3,11 @@ import "../../styles/index.css";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {AuthContext} from "../context";
+import AuthService from "../../services/AuthService";
+import {Validator} from "./validator";
+import {InputText} from "primereact/inputtext";
+import $ from "jquery";
+
 const SignUpForm = () => {
 
     const {isAuth, setIsAuth} = useContext(AuthContext)
@@ -12,26 +17,46 @@ const SignUpForm = () => {
     const [RepeatedPassword, setRepeatedPassword] = useState()
 
     const signUp = () => {
+        let errPlace = $(".error-message")
 
-        if (!isPasswordsEquals()) {
-            errorMessage("Different passwords")
+        if (!Validator.checkUsernameLength(Name)){
+            Validator.showErrorMessage("Name must be shorter than 24 symbols and not empty",errPlace)
+            return false
         }
 
-        setIsAuth(true)
+        if (!Validator.checkUsernameLength(Login)){
+            Validator.showErrorMessage("Login must be shorter than 24 symbols and not empty",errPlace)
+            return false
+        }
+
+        if (!Validator.checkPasswordLength(Password)) {
+            Validator.showErrorMessage("Password must be shorter than 24 symbols and not empty", errPlace)
+            return false
+        }
+
+        if (!isPasswordsEquals()) {
+            Validator.showErrorMessage("Different passwords",errPlace)
+            return false
+        }
+
+        AuthService.registration(Name, Login, Password).then(r =>{
+            localStorage.setItem("token", r.data.jwtAccessToken)
+            setIsAuth(true)
+        })
+
     }
     const isPasswordsEquals = () => {
         return Password == RepeatedPassword
     }
-    const errorMessage = (text) => {
-        alert(text)
-    }
+
 
     return (
-        <div className="registration-container mx-auto border border-2" style={{height:600}}>
+        <div className="registration-container mx-auto border border-2" style={{height: 600}}>
             <Helmet>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+                <link rel="stylesheet"
+                      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
             </Helmet>
-            <div className="error-message"></div>
+            <div className="error-message" style={{fontSize : 20}}></div>
             <div className="row h-100 w-100 m-0">
                 <div className="row m-0 h-100">
                     <div className="position-absolute">
@@ -63,7 +88,7 @@ const SignUpForm = () => {
                         </div>
                     </div>
                     <div className="col d-flex">
-                            <button onClick={signUp} className="submit-btn fs-5 m-auto content-block">Sign up</button>
+                        <button onClick={signUp} className="submit-btn fs-5 m-auto content-block">Sign up</button>
                     </div>
                 </div>
             </div>

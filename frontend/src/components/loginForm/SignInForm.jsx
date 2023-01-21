@@ -3,6 +3,10 @@ import "../../styles/index.css";
 import {Helmet} from "react-helmet";
 import {Link} from "react-router-dom";
 import {AuthContext} from "../context";
+import AuthService from "../../services/AuthService";
+import $ from "jquery";
+import {Validator} from "./validator";
+
 const SignInForm = () => {
 
     const {isAuth, setIsAuth} = useContext(AuthContext)
@@ -10,15 +14,32 @@ const SignInForm = () => {
     const [Password, setPassword] = useState()
 
     const signIn = () => {
-        setIsAuth(true)
+        let errPlace = $(".error-message")
+
+        if (!Validator.checkUsernameLength(Login)) {
+            Validator.showErrorMessage("Login must be shorter than 24 symbols and not empty", errPlace)
+            return false
+        }
+
+        if (!Validator.checkPasswordLength(Password)) {
+            Validator.showErrorMessage("Password must be shorter than 24 symbols and not empty", errPlace)
+            return false
+        }
+
+        AuthService.login(Login, Password).then(r =>{
+            localStorage.setItem("token", r.data.jwtAccessToken)
+            setIsAuth(true)
+        })
     }
 
+
     return (
-        <div className="registration-container mx-auto border border-2" style={{height:600}}>
+        <div className="registration-container mx-auto border border-2" style={{height: 600}}>
             <Helmet>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+                <link rel="stylesheet"
+                      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
             </Helmet>
-            <div className="error-message"></div>
+            <div className="error-message" style={{fontSize: 20}}></div>
             <div className="row h-100 w-100 m-0">
                 <div className="row m-0 h-100">
                     <div className="position-absolute">
@@ -38,7 +59,8 @@ const SignInForm = () => {
                                 </input>
                             </div>
                             <div className="row">
-                                <button onClick={signIn} className="submit-btn fs-5 m-auto content-block mt-3">Sign in</button>
+                                <button onClick={signIn} className="submit-btn fs-5 m-auto content-block mt-3">Sign in
+                                </button>
                             </div>
                         </div>
                     </div>

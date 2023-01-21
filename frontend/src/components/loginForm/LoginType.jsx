@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link} from "react-router-dom";
 import Task from "../Task";
+import {Button} from "primereact/button"
+
 const LoginType = () => {
 
     const [TaskVisible, setTaskVisible] = useState(false);
@@ -13,6 +15,7 @@ const LoginType = () => {
         setTaskVisible(false)
     }
 
+
     return (
         <div className="registration-container mx-auto border border-2">
             <div className="row h-100 w-100 m-0">
@@ -23,7 +26,7 @@ const LoginType = () => {
                         </Link>
                     </div>
                     <div className="col d-flex justify-content-center">
-                        <Link to="SignUp">
+                        <Link to="/SignUp">
                             <button style={{marginTop: 50}} className="submit-btn content-block fs-5">Sign up</button>
                         </Link>
                     </div>

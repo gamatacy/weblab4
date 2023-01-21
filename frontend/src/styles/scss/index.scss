@@ -6,7 +6,7 @@ $body-color: #221E22;
 $font-family-sans-serif: 'Poppins', sans-serif;
 $font-size-base: 2.25rem;
 $h1-font-size: $font-size-base;
-$border-color: #4e90f1;
+$border-color: #6366F1;
 $grid-breakpoints: (
         xs: 0,
         sm: 891px,
@@ -18,11 +18,13 @@ $grid-breakpoints: (
 //Project variables
 $block-color: white;
 
-
+@import "input";
+@import "table";
+@import "graph";
 @import "header";
 @import "registration";
 @import "task";
-@import "../../../../node_modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 html, body, #app, #app>div {
     height: 100%

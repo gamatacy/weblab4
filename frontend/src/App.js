@@ -1,11 +1,22 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/router/AppRouter";
 import Header from "./components/Header";
 import {AuthContext} from "./components/context";
+import AuthService from "./services/AuthService";
 
 function App(){
-    const [isAuth, setIsAuth] = useState(false)
+
+    //Change to null
+    const [isAuth, setIsAuth] = useState(null)
+
+    useEffect(() => {
+        AuthService.authRestore().then(r => {
+            setIsAuth(r)
+        }).catch(r => {
+            setIsAuth(r)
+        })
+    })
 
     return(
         <AuthContext.Provider value={{
@@ -13,7 +24,7 @@ function App(){
             setIsAuth
         }}>
             <BrowserRouter>
-                <Header/>
+                <Header isAuth={isAuth} setIsAuth={setIsAuth}/>
                 <AppRouter/>
             </BrowserRouter>
         </AuthContext.Provider>

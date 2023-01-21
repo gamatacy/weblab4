@@ -1,12 +1,7 @@
 .header-container {
   height: 100px;
-  min-width: 400px;
   max-width: 1000px;
-  margin-top: 0;
-}
-
-.git-icon{
-  background-image: url("../imggithub-mark.svg");
+  margin-top: 60px;
 }
 
 /*# sourceMappingURL=header.css.map */
