@@ -4,13 +4,15 @@ import {IHit} from "../models/IHit";
 import {delay, retry, retryWhen, tap} from "rxjs";
 import {PagesCount} from "../models/pages-count";
 import {IHitsResponse} from "../models/IHitsResponse";
+import {RadiusService} from "./radius.service";
+import {GraphService} from "./graph.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HitsService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private radiusService: RadiusService, private graphService: GraphService) {
   }
 
   hits: IHit[] = []
@@ -19,15 +21,17 @@ export class HitsService {
   currentPage = 1
 
 
-  getHits(page: number) {
+  getHits() {
     const offset = Intl.DateTimeFormat().resolvedOptions().timeZone
     return this.http.post<IHitsResponse>("/api/hits/getHits", {
-      page: page,
+      page: this.currentPage,
       offset: offset
     }).pipe(
       retry(2),
       tap(hits => this.hits = hits.data),
-      tap(hits => console.log(hits))
+      tap(() => {
+        this.graphService.drawHits(this.hits)
+      })
     )
   }
 
@@ -36,17 +40,22 @@ export class HitsService {
       retry(2),
       tap(
         res => this.pagesCount = res.pagesCount
-      )
+      ),
+      tap(() => {
+        if (this.hits.length == 10) {
+          this.currentPage = this.pagesCount
+        }
+      })
     )
   }
 
-  applyHit(x: number, y: number, r: number) {
+  applyHit(x: number, y: number) {
     const offset = Intl.DateTimeFormat().resolvedOptions().timeZone
     return this.http.post<string>("api/hits/applyHit", {
-      x:x,
-      y:y,
-      r:r,
-      offset:offset
+      x: x,
+      y: y,
+      r: this.radiusService.rValue,
+      offset: offset
     }).pipe(
       delay(500),
       retry(2)

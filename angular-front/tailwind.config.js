@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  relative: true,
+  content: [
+    './src/app/components/**/*.{html,ts}',
+    './src/app/pages/**/*.{html,ts}',
+    './src/*.{html,ts}'
+  ],
   theme: {
     extend: {},
     screens: {
@@ -21,6 +26,9 @@ module.exports = {
       'gray' : '#20262e',
       'light-gray' : '#2a323d',
     },
-    plugins: [],
+    plugins: [
+      require('tailwindcss'),
+      require('autoprefixer')
+    ],
   }
 }

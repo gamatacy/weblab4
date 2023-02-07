@@ -22,7 +22,7 @@
   </p-table>
   <div class="text-white flex justify-center align-middle h-[40px] mt-3">
     <i class="pi pi-angle-left text-3xl hover:text-4xl" (click)="previousPage()"></i>
-    <span class="mt-1 mx-3 text-xl">{{ hitsService.currentPage }} of {{ hitsService.pagesCount }}</span>
+    <span class="mt-1 mx-3 text-xl" (click)="toLastPage()">{{ hitsService.currentPage }} of {{ hitsService.pagesCount }}</span>
     <i class="pi pi-angle-right text-3xl hover:text-4xl" (click)="nextPage()"></i>
   </div>
 </div>

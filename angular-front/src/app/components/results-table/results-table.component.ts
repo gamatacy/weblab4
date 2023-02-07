@@ -12,7 +12,7 @@ export class ResultsTableComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      this.hitsService.getHits(this.hitsService.currentPage).subscribe()
+      this.hitsService.getHits().subscribe()
       this.hitsService.getPagesCount().subscribe()
   }
 
@@ -20,15 +20,20 @@ export class ResultsTableComponent implements OnInit{
   previousPage(){
     if ( this.hitsService.currentPage > 1){
       this.hitsService.currentPage -= 1
-      this.hitsService.getHits( this.hitsService.currentPage).subscribe()
+      this.hitsService.getHits().subscribe()
     }
   }
 
   nextPage(){
     if ( this.hitsService.currentPage < this.hitsService.pagesCount){
       this.hitsService.currentPage += 1
-      this.hitsService.getHits( this.hitsService.currentPage).subscribe()
+      this.hitsService.getHits().subscribe()
     }
+  }
+
+  toLastPage(){
+    this.hitsService.currentPage = this.hitsService.pagesCount
+    this.hitsService.getHits().subscribe()
   }
 
 }
