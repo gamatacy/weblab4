@@ -27,3 +27,52 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+ANGULAR
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+angular-front/dist
+angular-front/tmp
+angular-front/out-tsc
+angular-front/bazel-out
+
+# Node
+angular-front//node_modules
+angular-front/npm-debug.log
+angular-front/yarn-error.log
+
+# IDEs and editors
+angular-front/.idea/
+angular-front/.project
+angular-front/.classpath
+angular-front/.c9/
+
+angular-front/*.launch
+
+angular-front/settings/
+
+angular-front/*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+
+angular-front/vscode/settings.json
+angular-front/vscode/tasks.json
+angular-front/vscode/launch.json
+angular-front/vscode/extensions.json
+angular-front/history/*
+
+# Miscellaneous
+angular-front/angular/cache
+angular-front/sass-cache/
+angular-front/connect.lock
+angular-front/coverage
+angular-front/libpeerconnection.log
+angular-front/testem.log
+angular-front/typings
+
+# System files
+angular-front/.DS_Store
+angular-front/Thumbs.db
