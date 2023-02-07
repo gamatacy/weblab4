@@ -6,15 +6,15 @@
 ./backend/HELP.md
 # dependencies
 
-/frontend/node_modules
-/frontend/.pnp
+/react-front/node_modules
+/react-front/.pnp
 /frontend.pnp.js
 
 # testing
 /coverage
 
 # production
-/frontend/build
+/react-front/build
 
 .idea
 # misc

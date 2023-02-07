@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping
 @Controller
 class ErrorPageController: ErrorController {
 
-    @GetMapping("/error")
-    @PostMapping("/error")
-    fun redirect(): String{
-        return "/"
-    }
+//    @GetMapping("/error")
+//    @PostMapping("/error")
+//    fun redirect(): String{
+//        return "/"
+//    }
 
 }

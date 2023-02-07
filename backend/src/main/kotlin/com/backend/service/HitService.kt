@@ -1,6 +1,7 @@
 package com.backend.service
 
 import com.backend.dto.ApplyHitDto
+import com.backend.dto.OkResponse
 import com.backend.dto.PagesCountDto
 import com.backend.dto.ReturnHitsDto
 import com.backend.entity.HitEntity
@@ -50,9 +51,9 @@ class HitService {
 
             hitsRepository.save(hitEntity)
 
-            ResponseEntity.ok("Hit added")
+            ResponseEntity.ok(OkResponse("Hit added"))
         } catch (e: Exception) {
-            ResponseEntity.badRequest().body("unauthorized")
+            ResponseEntity.status(401).body("unauthorized")
         }
     }
 
@@ -69,7 +70,7 @@ class HitService {
 
             ResponseEntity.ok(ReturnHitsDto(ReturnHitsDto.hitsEntityToDto(results, offset)))
         } catch (ce: ClassCastException) {
-            ResponseEntity.badRequest().body("unauthorized")
+            ResponseEntity.status(401).body("unauthorized")
         } catch (e: Exception) {
             ResponseEntity.badRequest().body(e.message)
         }
@@ -85,7 +86,7 @@ class HitService {
 
             ResponseEntity.ok(PagesCountDto(count))
         } catch (ce: ClassCastException) {
-            ResponseEntity.badRequest().body("unauthorized")
+            ResponseEntity.status(401).body("unauthorized")
         } catch (e: Exception) {
             ResponseEntity.badRequest().body(e.message)
         }

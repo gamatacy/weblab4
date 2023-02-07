@@ -1,9 +1,6 @@
 package com.backend.service
 
-import com.backend.dto.AuthenticationResponseDto
-import com.backend.dto.FailedAuthenticationResponseDto
-import com.backend.dto.LoginUserDto
-import com.backend.dto.RegistrationUserDto
+import com.backend.dto.*
 import com.backend.entity.UserEntity
 import com.backend.repository.UserRepository
 import com.backend.util.PasswordEncoder
@@ -91,6 +88,16 @@ class AuthenticationService {
 
         return ResponseEntity.status(403).body("Token Expired")
 
+    }
+
+    fun logout(request: HttpServletRequest): ResponseEntity<Any>{
+        val cookie =
+            ResponseCookie.from("refreshToken", "")
+                .path("/api/auth/refresh")
+                .httpOnly(true)
+                .maxAge(0)
+                .build()
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(OkResponse("logout success"))
     }
 
 }

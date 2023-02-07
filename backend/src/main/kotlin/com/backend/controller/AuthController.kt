@@ -18,9 +18,6 @@ class AuthController {
     @Autowired
     private lateinit var authenticationService: AuthenticationService
 
-    @Autowired
-    private lateinit var jwtService: JwtService
-
     @PostMapping("/registration")
     fun registration(@RequestBody user: RegistrationUserDto): ResponseEntity<Any>{
         return try {
@@ -44,4 +41,8 @@ class AuthController {
       return authenticationService.refreshToken(request)
     }
 
+    @GetMapping("/logout")
+    fun logout(request: HttpServletRequest): ResponseEntity<Any>{
+        return authenticationService.logout(request)
+    }
 }
