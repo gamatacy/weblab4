@@ -1,0 +1,49 @@
+<div
+  class="bg-light-gray h-[550px] max-w-[550px] shadow-md mx-auto md:mt-32 mt-8 overflow-hidden flex justify-center relative">
+
+  <i class="pi pi-arrow-left absolute left-5 top-5 text-white" (click)="redirect('/')"></i>
+
+  <div class="h-[85%] m-auto">
+
+    <div class="field">
+      <label for="sign-up-name" class="block text-white text-lg">Name</label>
+      <!--        ng-invalid ng-dirty-->
+      <input id="sign-up-name" type="username" aria-describedby="username2-help" class="" pInputText
+             [(ngModel)]="name" maxlength="20"
+      />
+      <small id="sign-up-name-help" class="p-error block h-3" *ngIf="nameIsShort">Cannot be empty!</small>
+    </div>
+
+    <div class="field mt-5">
+      <label for="sign-up-username" class="block text-white text-lg">Username</label>
+      <input id="sign-up-username" type="username" aria-describedby="username2-help" class="" pInputText
+             [(ngModel)]="username" maxlength="20"
+      />
+      <small id="sign-up-username-help" class="p-error block h-3" *ngIf="usernameIsShort">Cannot be empty!</small>
+    </div>
+
+    <div class="field mt-5">
+      <label for="sign-up-password" class="block text-white text-lg">Password</label>
+      <input id="sign-up-password" type="password" aria-describedby="username2-help" class="" pInputText
+             [(ngModel)]="password" maxlength="20"
+      />
+      <small id="sign-up-password-help" class="p-error block h-3" *ngIf="passwordIsShort">Cannot be empty!</small>
+    </div>
+
+    <div class="field mt-5">
+      <label for="sign-up-password2" class="block text-white text-lg">Password again</label>
+      <input id="sign-up-password2" type="password" aria-describedby="username2-help" class="" pInputText
+             [(ngModel)]="password2" maxlength="20"
+      />
+      <small id="sign-up-password2-help" class="p-error block h-3" *ngIf="!passwordsEquals">Different passwords!</small>
+    </div>
+
+    <div class="w-[100%] flex justify-center">
+      <button pButton pRipple type="button" label="Sign in"
+              class="p-button-raised mt-4 text-xl"
+              (click)="signUp()"
+      ></button>
+    </div>
+
+  </div>
+</div>

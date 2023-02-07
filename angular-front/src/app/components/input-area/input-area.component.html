@@ -1,0 +1,27 @@
+<div class="md:w-[500px]">
+
+    <div class="w-[100%] flex justify-center md:mt-28 mt-16">
+      <label for="x-input" class="text-white mt-3 mr-2 text-2xl">X </label>
+      <p-inputNumber [(ngModel)]="xValue" mode="decimal" [showButtons]="true" id="x-input" [min]="-3" [max]="3"
+                     [maxlength]="2">
+      </p-inputNumber>
+    </div>
+
+    <div class="w-[100%] flex justify-center  mt-10">
+      <label for="y-input" class="text-white text-2xl mr-1">Y :  {{yValue}}</label>
+      <p-slider [(ngModel)]="yValue" id="y-input" [min]="-3" [max]="5" class="w-[220px] ml-3 mt-3.5"></p-slider>
+    </div>
+
+
+    <div class="w-[100%] flex justify-center mt-10">
+      <label for="r-input" class="text-white text-2xl mt-3 mr-2 ">R </label>
+      <p-inputNumber [(ngModel)]="rValue" mode="decimal" [showButtons]="true" id="r-input" [min]="-3" [max]="3"
+                     [maxlength]="2">
+      </p-inputNumber>
+    </div>
+
+    <div class="w-[100%] flex justify-center mt-10">
+      <button pButton pRipple type="button" label="Submit" class="p-button-raised text-2xl" (click)="submit()"></button>
+    </div>
+
+</div>
