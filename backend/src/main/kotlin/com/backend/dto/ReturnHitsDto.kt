@@ -14,6 +14,7 @@ class ReturnHitsDto(
 
             for(entity in entities){
                 val hitDto = HitDto(
+                    entity.id,
                     entity.result,
                     entity.x,
                     entity.y,

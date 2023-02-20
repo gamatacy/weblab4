@@ -1,7 +1,10 @@
 export interface IHit {
+
+  id: number,
   result: boolean,
   x: number,
   y: number,
   r: number,
-  time: string
+  time: string,
+  execTime: string
 }

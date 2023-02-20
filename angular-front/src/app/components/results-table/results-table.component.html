@@ -3,20 +3,24 @@
            [tableStyle]="{'min-width': '300px'}" >
     <ng-template pTemplate="header">
       <tr>
-        <th>Result</th>
-        <th>X</th>
-        <th>Y</th>
-        <th>R</th>
-        <th>Time</th>
+        <th class="text-xs md:text-lg">ID</th>
+        <th class="text-xs md:text-lg">Result</th>
+        <th class="text-xs md:text-lg">X</th>
+        <th class="text-xs md:text-lg">Y</th>
+        <th class="text-xs md:text-lg">R</th>
+        <th class="text-xs md:text-lg">Time</th>
+        <th class="text-xs md:text-lg">execTime</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-hit>
+    <ng-template pTemplate="body" let-hit let-i="rowIndex">
       <tr>
-        <td>{{hit.result}}</td>
-        <td>{{hit.x}}</td>
-        <td>{{hit.y}}</td>
-        <td>{{hit.r}}</td>
-        <td>{{hit.time}}</td>
+        <td class="text-xs md:text-lg">{{hit.id}}</td>
+        <td class="text-xs md:text-lg">{{hit.result}}</td>
+        <td class="text-xs md:text-lg">{{hit.x}}</td>
+        <td class="text-xs md:text-lg">{{hit.y}}</td>
+        <td class="text-xs md:text-lg">{{hit.r}}</td>
+        <td class="text-xs md:text-lg">{{hit.time}}</td>
+        <td class="text-xs md:text-lg">{{hit.execTime}}ms</td>
       </tr>
     </ng-template>
   </p-table>

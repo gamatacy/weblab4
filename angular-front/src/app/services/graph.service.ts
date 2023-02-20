@@ -38,8 +38,8 @@ export class GraphService {
       this.setSize()
       const {x, y} = this.convertCoordinates(e.offsetX, e.offsetY, this.isSmall)
 
-      setX(x.toString().substring(0, 4))
-      setY(y.toString().substring(0, 4))
+      setX(x.toString().substring(0, 6))
+      setY(y.toString().substring(0, 6))
     })
 
     // @ts-ignore
@@ -91,21 +91,28 @@ export class GraphService {
     canvas.width = this.width
     // @ts-ignore
     canvas.height = this.height
+    let color = "black"
 
     hits.forEach((hit) => {
+
       if (hit.r == this.radiusService.rValue) {
-        this.drawHit(hit.x, hit.y, hit.result, ctx)
+        if (hit.result) {
+          color = "#6366F1"
+        } else {
+          color = "black"
+        }
+      } else {
+        color = "#acade8"
       }
+
+      this.drawHit(hit.x, hit.y, hit.result, ctx, color)
+
     })
   }
 
-  drawHit(x: number, y: number, result: boolean, ctx: CanvasRenderingContext2D) {
+  drawHit(x: number, y: number, result: boolean, ctx: CanvasRenderingContext2D, color: string) {
     ctx.beginPath()
-    if (result) {
-      ctx.fillStyle = "#6366F1"
-    } else {
-      ctx.fillStyle = "black"
-    }
+    ctx.fillStyle = color
 
     // @ts-ignore
     const {x: xCoordinate, y: yCoordinate} = this.convertToPixels(x, y)

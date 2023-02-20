@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GraphService} from "../../services/graph.service";
 import {HitsService} from "../../services/hits.service";
 import {RadiusService} from "../../services/radius.service";
@@ -8,9 +8,17 @@ import {RadiusService} from "../../services/radius.service";
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss']
 })
-export class GraphComponent implements OnInit {
+export class GraphComponent implements OnInit, OnDestroy {
 
-  constructor(private graphService: GraphService, private hitsService: HitsService) {
+  constructor(private graphService: GraphService, private hitsService: HitsService, private radiusServuce: RadiusService) {
+  }
+
+  // @ts-ignore
+  draw = null
+
+  ngOnDestroy(): void {
+    // @ts-ignore
+    clearInterval(this.draw)
   }
 
   xValue: string = ' '
@@ -25,9 +33,13 @@ export class GraphComponent implements OnInit {
     })
     // @ts-ignore
     document.getElementById("graph").addEventListener("click", () => {
-      this.hitsService.applyHit(parseFloat(this.xValue),parseFloat(this.yValue)).subscribe()
-      this.hitsService.getHits().subscribe()
-      this.hitsService.getPagesCount().subscribe()
+      if (this.radiusServuce.validateR()){
+        this.hitsService.applyHit(parseFloat(this.xValue), parseFloat(this.yValue)).subscribe()
+        this.hitsService.getHits().subscribe()
+        setTimeout(() => {
+          this.hitsService.getPagesCount().subscribe()
+        }, 1000)
+      }
     })
 
     const radiusObserver = new MutationObserver(() => {
@@ -35,9 +47,14 @@ export class GraphComponent implements OnInit {
     })
 
     // @ts-ignore
-    radiusObserver.observe(document.querySelector("#r-input"),{attributes : "aria-valuenow"})
+    radiusObserver.observe(document.querySelector("#r-input"), {attributes: "aria-valuenow"})
+
+    // @ts-ignore
+    this.draw = setInterval(() => {
+      this.hitsService.getHits().subscribe()
+      this.graphService.drawHits(this.hitsService.hits)
+    }, 1000)
 
   }
-
 
 }

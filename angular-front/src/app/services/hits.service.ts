@@ -1,12 +1,18 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {IHit} from "../models/IHit";
-import {delay, retry, retryWhen, tap} from "rxjs";
+import {delay, retry, tap} from "rxjs";
 import {PagesCount} from "../models/pages-count";
 import {IHitsResponse} from "../models/IHitsResponse";
 import {RadiusService} from "./radius.service";
 import {GraphService} from "./graph.service";
 
+// инверьтровать данные +
+// поле execTime вернуть + id +
+// отрисовка всего +
+// ошибка при валидации +
+// старые данные при смене пользователя +
+// proxy, dispatcherservlet,
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +23,6 @@ export class HitsService {
 
   hits: IHit[] = []
   pagesCount: number = 1
-
   currentPage = 1
 
 
@@ -28,8 +33,9 @@ export class HitsService {
       offset: offset
     }).pipe(
       retry(2),
-      tap(hits => this.hits = hits.data),
-      tap(() => {
+      tap(hits => {
+        this.hits = hits.data
+        this.hits.reverse()
         this.graphService.drawHits(this.hits)
       })
     )

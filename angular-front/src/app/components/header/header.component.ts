@@ -7,6 +7,6 @@ import {Component} from '@angular/core';
 })
 export class HeaderComponent {
 
-  smallWidth = window.screen.width < 400
+  smallWidth = window.innerWidth < 400
 
 }

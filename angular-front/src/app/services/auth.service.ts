@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, delay, Observable, retry, tap, throwError} from "rxjs";
 import {AuthResponse} from "../models/auth-response";
 import {ErrorService} from "./error.service";
+import {HitsService} from "./hits.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
 
   private isAuth = false
 
-  constructor(private http: HttpClient, private errorService: ErrorService) {
+  constructor(private http: HttpClient, private errorService: ErrorService, private hitsSerivce: HitsService) {
   }
 
   setIsAuth(condition: boolean) {
@@ -23,6 +24,9 @@ export class AuthService {
   }
 
   logout() {
+    this.hitsSerivce.currentPage = 1
+    this.hitsSerivce.pagesCount = 1
+    this.hitsSerivce.hits = []
     return this.http.get("/api/auth/logout").pipe(retry(2))
   }
 

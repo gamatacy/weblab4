@@ -39,7 +39,8 @@ angular-front/out-tsc
 angular-front/bazel-out
 
 # Node
-angular-front//node_modules
+angular-front/node_modules
+angular-front/.angular
 angular-front/npm-debug.log
 angular-front/yarn-error.log
 

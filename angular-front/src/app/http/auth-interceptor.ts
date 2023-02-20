@@ -61,7 +61,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private errorHandler(message: string) {
-    this.errorService.handle(message)
+    //this.errorService.handle(message)
     return throwError(() => message)
   }
 

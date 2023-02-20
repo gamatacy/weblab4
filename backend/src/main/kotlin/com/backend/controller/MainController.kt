@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping
 @Controller
 class MainController {
 
-//    @GetMapping("/")
-//    fun redirect(): String{
-//        return "/index.html"
-//    }
+    @GetMapping("/{path:[^\\\\.]+}")
+    fun redirect(): String{
+        return "/"
+    }
 
 
 }

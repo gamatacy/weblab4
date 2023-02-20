@@ -1,5 +1,5 @@
 <div
-  class="bg-light-gray h-[550px] max-w-[550px] shadow-md mx-auto md:mt-32 mt-8 overflow-hidden flex justify-center relative">
+  class="bg-light-gray h-[550px] max-w-[550px] shadow-md mx-auto md:mt-16 mt-8 overflow-hidden flex justify-center relative">
 
   <i class="pi pi-arrow-left absolute left-5 top-5 text-white" (click)="redirect('/')"></i>
 
@@ -14,7 +14,7 @@
       <small id="sign-up-name-help" class="p-error block h-3" *ngIf="nameIsShort">Cannot be empty!</small>
     </div>
 
-    <div class="field mt-5">
+    <div class="field mt-3">
       <label for="sign-up-username" class="block text-white text-lg">Username</label>
       <input id="sign-up-username" type="username" aria-describedby="username2-help" class="" pInputText
              [(ngModel)]="username" maxlength="20"
@@ -22,7 +22,7 @@
       <small id="sign-up-username-help" class="p-error block h-3" *ngIf="usernameIsShort">Cannot be empty!</small>
     </div>
 
-    <div class="field mt-5">
+    <div class="field mt-3">
       <label for="sign-up-password" class="block text-white text-lg">Password</label>
       <input id="sign-up-password" type="password" aria-describedby="username2-help" class="" pInputText
              [(ngModel)]="password" maxlength="20"
@@ -30,7 +30,7 @@
       <small id="sign-up-password-help" class="p-error block h-3" *ngIf="passwordIsShort">Cannot be empty!</small>
     </div>
 
-    <div class="field mt-5">
+    <div class="field mt-3">
       <label for="sign-up-password2" class="block text-white text-lg">Password again</label>
       <input id="sign-up-password2" type="password" aria-describedby="username2-help" class="" pInputText
              [(ngModel)]="password2" maxlength="20"

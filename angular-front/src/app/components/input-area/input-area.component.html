@@ -2,10 +2,12 @@
 
     <div class="w-[100%] flex justify-center md:mt-28 mt-16">
       <label for="x-input" class="text-white mt-3 mr-2 text-2xl">X </label>
-      <p-inputNumber [(ngModel)]="xValue" mode="decimal" [showButtons]="true" id="x-input" [min]="-3" [max]="3"
-                     [maxlength]="2">
-      </p-inputNumber>
+      <input id="x-input" type="number" [(ngModel)]="xValue" class="w-[260px]" pInputText />
     </div>
+    <small id="x-value-error" class="p-error block h-3 mt-3 w-96 mx-auto text-center">
+      <span></span>
+    </small>
+
 
     <div class="w-[100%] flex justify-center  mt-10">
       <label for="y-input" class="text-white text-2xl mr-1">Y :  {{yValue}}</label>
@@ -15,10 +17,11 @@
 
     <div class="w-[100%] flex justify-center mt-10">
       <label for="r-input" class="text-white text-2xl mt-3 mr-2 ">R </label>
-      <p-inputNumber [(ngModel)]="radiusService.rValue" mode="decimal" [showButtons]="true" id="r-input" [min]="1" [max]="3"
-                     [maxlength]="2">
-      </p-inputNumber>
+      <input id="r-input" type="number" [(ngModel)]="radiusService.rValue" class="w-[260px]" pInputText />
     </div>
+  <small id="r-value-error" class="p-error block h-3 mt-3 w-96 mx-auto text-center">
+    <span></span>
+  </small>
 
     <div class="w-[100%] flex justify-center mt-10">
       <button pButton pRipple type="button" label="Submit" class="p-button-raised text-2xl" (click)="submit()"></button>
